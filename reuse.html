@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="build/browser.min.js"></script>
+  </head>
+  <body>
+
+    <script type="text/babel">
+
+    var Search = React.createClass({
+        getInitialState:function(){
+            return {flag:false};
+        },
+        handleClick:function(event){
+            this.setState({flag:!this.state.flag});
+        },
+        render:function(){
+            return (
+                <div>
+                    {this.props.searchType}:<input type ='text' disabled = {this.state.flag}/>
+                    <button onClick = {this.handleClick}> Search </button>
+                </div>
+            )
+        }
+    })
+    var Page = React.createClass({
+        render:function(){
+            return(
+                <div>
+                <h1>Hi!</h1>
+                <Search searchType='Name'/>
+                <Search searchType='Gender'/>
+                </div>
+            )
+        }
+    })
+
+    React.render(
+        <Page />,
+        document.body
+    );
+
+    </script>
+  </body>
+</html>
