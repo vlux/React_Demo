@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <script type="text/babel">
+      var Hello = React.createClass({
+        getInitialState: function () {
+          return {
+            color: 'black'
+          };
+        },
+
+        componentDidMount: function () {
+          this.timer = setInterval(function () {
+            var color = this.state.color;
+            if (color == 'black' ) {
+              color = 'blue';
+            }
+            else{
+              color = 'black'
+            }
+            this.setState({
+              color: color
+            });
+          }.bind(this), 100);
+        },
+
+        render: function () {
+          return (
+            <div style={{color: this.state.color}}>
+              Hello {this.props.name}
+            </div>
+          );
+        }
+      });
+
+      ReactDOM.render(
+        <Hello name="world"/>,
+        document.body
+      );
+    </script>
+  </body>
+</html>
