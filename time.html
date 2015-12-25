@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="build/browser.min.js"></script>
+  </head>
+  <body>
+
+    <script type="text/babel">
+	var HelloTime = React.createClass({
+
+		getInitialState:function(){
+			return {time: ''}
+		},
+		tick :function(){
+			this.setState({
+
+			})
+		},
+		componentDidMount:function(){
+			this.interval = setInterval(this.tick,1000);
+		},
+		componentWillUnmount:function(){
+			clearInterval(this.interval);
+		},
+		render:function(){
+			return (
+				<p>
+					Hello,It is {this.state.time.toTimeString()}
+				</p>
+			)
+		}
+	})
+
+	React.render(
+		<HelloTime time={new Date()}/>,
+		document.body
+	)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="build/browser.min.js"></script>
+  </head>
+  <body>
+
+    <script type="text/babel">
+	var TodoList = React.createClass({
+		render:function(){
+			var createItem = function(itemText){
+				return <li>{itemText}</li>
+			}
+			return(
+				<ul>
+					{this.props.items.map(createItem)}
+				</ul>
+			)
+		}
+	})
+
+	var TodoApp = React.createClass({
+		getInitialState:function(){
+			return{items:[],text:''}
+		},
+		onChange:function(evt){
+			this.setState({text:evt.target.value})
+		},
+		handleSubmit:function(evt){
+			evt.preventDefault();
+			var nextItems = this.state.items.concat([this.state.text]);
+			var nextText ='';
+			this.setState({items:nextItems,text:nextText});
+		},
+		render:function(){
+			return(
+				<div>
+				<h3>TODO</h3>
+				<TodoList items={this.state.items} />
+				<form onSubmit={this.handleSubmit}>
+					<input onChange ={this.onChange} value ={this.state.text} />
+					<button>{'Add #' + (this.state.items.length + 1)}</button>
+				</form>
+				</div>
+			)
+		}
+	})
+
+	React.render(
+		<TodoApp />,
+		document.body
+	)
+    </script>
+  </body>
+</html>
