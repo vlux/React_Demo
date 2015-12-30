@@ -1,4 +1,4 @@
-function draw(url) {
+function draw(position, url) {
 
 	var margin = {
 			top: 350,
@@ -12,14 +12,14 @@ function draw(url) {
 		return (d.dx * d.depth * radius / 3) > 14
 	};
 
-	var hue = d3.scale.category20();
+	var hue = d3.scale.category20c();
 
 	var luminance = d3.scale.sqrt()
 		.domain([0, 1e6])
 		.clamp(true)
 		.range([90, 20]);
 
-	var svg = d3.select("body").append("svg")
+	var svg = d3.select(position).append("svg")
 		.attr("width", margin.left + margin.right)
 		.attr("height", margin.top + margin.bottom)
 		.append("g")
@@ -58,8 +58,11 @@ function draw(url) {
 	}
 
 	function format_description(d) {
-		var description = d.description;
-		return '<b>' + d.name + '</b></br>' + '(' + format_number(d.value) + ')';
+		var val = format_number(d.value)
+		var p = d.parent;
+		var ratio = val / format_number(p.sum)
+		var por = parseFloat(ratio.toFixed(2)) * 100;
+		return '<b>Sum:' + val + '</b></br>Ratio:' + por + '%';
 	}
 
 	function computeTextRotation(d) {
