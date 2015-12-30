@@ -1,5 +1,4 @@
 function draw(position, url) {
-
 	var margin = {
 			top: 350,
 			right: 480,
