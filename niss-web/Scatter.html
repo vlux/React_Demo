@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+	<style>
+	#chart svg {
+  		height: 600px;
+	}
+	</style>
+	<link href="nv.d3.css" rel="stylesheet" type ="text/css">
+<body>
+	<div id="chart">
+  	<svg></svg>
+	</div>
+	<script src="d3.js"></script>
+	<script src="nv.d3.min.js"></script>
+	<script>
+	nv.addGraph(function () {
+	    var chart = nv.models.scatterChart()
+	        .showDistX(true)
+	        .showDistY(true)
+	        .color(d3.scale.category10().range());
+
+	    chart.tooltipContent(function (key) {
+	        return '<h3>' + key + '</h3>';
+	    });
+
+	    //chart.xAxis.tickFormat(d3.format('.02f'));
+	    //chart.yAxis.tickFormat(d3.format('.02f'));
+
+	    var data = [],
+	        shapes = ['circle', 'diamond', 'triangle-up', 'triangle-down', 'cross', 'square'],
+	        pro = ['TCP', 'UDP', 'ICMP'];
+
+	    d3.csv('data/Scatter/c.csv', function (d) {
+	        for (i = 0; i < 3; i++) {
+	            data.push({
+	                key: 'Protocol: ' + pro[i],
+	                values: []
+	            });
+	            for (j = 0; j < d.length; j++) {
+	                if (d[j].protocol == pro[i])(
+	                    data[i].values.push({
+	                        x: d[j].start,
+	                        y: d[j].end,
+	                        size: Math.log(d[j].sum)//Configure the size of each scatter point
+	                         //Configure the shape of each scatter point.
+	                    })
+	                )
+	            }
+	        }
+	        d3.select('#chart svg').datum(data).call(chart);
+	        nv.utils.windowResize(chart.update);
+	    })
+	});
+
+	</script>
+</body>
