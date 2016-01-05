@@ -18,13 +18,28 @@
 	        .showDistX(true)
 	        .showDistY(true)
 	        .color(d3.scale.category10().range());
+		chart.options({
 
-	    chart.tooltipContent(function (key) {
-	        return '<h3>' + key + '</h3>';
-	    });
+			transitionDuration: 500
+		})
 
-	    //chart.xAxis.tickFormat(d3.format('.02f'));
-	    //chart.yAxis.tickFormat(d3.format('.02f'));
+		chart.tooltip.contentGenerator(function (d) {
+		  //console.log(d.series)
+          var html = '<h3> Port </h3>';
+          d.series.forEach(function(elem){
+            html += "<h3>"+elem.value+" -> "+d.value+"</h3>";
+          })
+          return html;
+        })
+
+		var width = document.body.clientWidth
+		var height = 600;
+		var temp =[80,100,200,300,400]
+		var swidth = d3.scale.ordinal().domain(temp).range([0,width]);
+		var sheight = d3.scale.ordinal().domain([0,10000]).range([0, height]);
+
+		chart.xAxis.axisLabel("Destination Port");
+		chart.yAxis.axisLabel("Initial Port");
 
 	    var data = [],
 	        shapes = ['circle', 'diamond', 'triangle-up', 'triangle-down', 'cross', 'square'],
@@ -47,10 +62,17 @@
 	                )
 	            }
 	        }
-	        d3.select('#chart svg').datum(data).call(chart);
+	        d3.select('#chart svg')
+				.datum(data)
+				.transition()
+				.duration(500)
+				.call(chart);
 	        nv.utils.windowResize(chart.update);
 	    })
 	});
 
 	</script>
 </body>
+
+<!-- https://stackoverflow.com/questions/17296938/nvd3-scatter-plot-with-ordinal-scale
+https://stackoverflow.com/questions/14148310/line-chart-using-ordinal-x-axis-with-d3-js-and-nvd3-js
