@@ -19,7 +19,7 @@ s = [str(l) for l in data]
 _set = set(s)
 
 
-csvfile = file('c.csv', 'wb')
+csvfile = file('d.csv', 'wb')
 writer = csv.writer(csvfile)
 writer.writerow(['protocol', 'start', 'end','sum'])
 
@@ -31,7 +31,7 @@ for item in _set:
 
 ls = sorted(ls, key=lambda x:x[3], reverse=True)
 
-for l in ls[:1000]:
+for l in ls[:100]:
 	writer.writerow(l)
 
 csvfile.close()

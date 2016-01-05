@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+	<style>
+	</style>
+<body>
+	<div id="chart">
+	</div>
+	<script src="d3.js"></script>
+	<script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
+	<script>
+	var svg = dimple.newSvg("#chart", 700, 600);
+	  d3.csv("/data/Scatter/d.csv", function (data) {
+		var myChart = new dimple.chart(svg, data);
+		var x = myChart.addCategoryAxis("x", "end");
+		var y = myChart.addCategoryAxis("y", "start");
+		var z = myChart.addLogAxis("z","sum",2);
+		var mySeries = myChart.addSeries("protocol", dimple.plot.bubble);
+		myChart.addLegend(180, 10, 360, 20, "right");
+
+		//x.hidden = true;
+		//y.hidden = true;
+
+		//var myStoryboard = myChart.setStoryboard("end");
+		//myStoryboard.fontSize = "auto";
+		//myStoryboard.frameDuration = 1000;
+
+		myChart.draw();
+
+	  });
+
+	</script>
+</body>
