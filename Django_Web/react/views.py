@@ -2,6 +2,10 @@
 from django.http import HttpResponse
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
+from django.template.loader import render_to_string
+
+
+import os
 
 # Create your views here.
 
@@ -28,3 +32,24 @@ def form(request):
 
 def js(request):
 	return render(request,'js.html')
+
+# render the static html to view
+def my_view(request):
+    context = {'some_key': 'some_value'}
+    static_html = '/path/to/static.html'
+
+    if not os.path.exists(static_html):
+        content = render_to_string('template.html', context)
+        with open(static_html, 'w') as static_file:
+            static_file.write(content)
+
+    return render(request, static_html)
+
+# detect the log in repetely
+def post_comment(request, new_comment):
+    if request.session.get('has_commented', False):
+        return HttpResponse("You've already commented.")
+    c = comments.Comment(comment=new_comment)
+    c.save()
+    request.session['has_commented'] = True
+    return HttpResponse('Thanks for your comment!')
