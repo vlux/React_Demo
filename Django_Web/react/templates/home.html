@@ -1,9 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    
+
 </head>
 <body>
-	Hello World!
+	<p>Hello World!</p>
+    <p>{{string}}</p>
+    <p>
+        {% for i in lis1 %}
+        {{ i }}
+        {% endfor %}
+    </p>
+    <p>
+        {{dic.a}} {{dic.b}}
+    </p>
+    <p>
+        {% for k,v in dic.items %}
+        {{k}}:{{v}}
+        {% endfor %}
+    </p>
+    <p>
+        {% for i in lis_num %}
+        {{i}}{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    </p>
+    <a href="{{ request.path }}?{{ request.GET.urlencode }}&delete=1">当前网址加参数 delete</a><br>
+    <a href="{% url 'add2' 3 4 %}">add2</a><br>
 </body>
 </html>

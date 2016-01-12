@@ -21,6 +21,7 @@ from react import views as react_views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$',react_views.home,name='home'),
+    url(r'form',react_views.form,name='form'),
     url(r'add/',react_views.add,name='add'),
     url(r'^add2/(\d+)/(\d+)/$', react_views.add2, name='add2'),
 
