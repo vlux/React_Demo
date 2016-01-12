@@ -1,11 +1,13 @@
 #coding:utf-8
 from django.http import HttpResponse
+from django.http import JsonResponse
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.template.loader import render_to_string
 
 
 import os
+
 
 # Create your views here.
 
@@ -32,6 +34,25 @@ def form(request):
 
 def js(request):
 	return render(request,'js.html')
+
+
+def ajax_list(request):
+    a = range(100)
+    return JsonResponse(a, safe=False)
+
+def ajax_dict(request):
+    name_dict = {'twz': 'Love python and Django', 'zqxt': 'I am teaching Django'}
+    return JsonResponse(name_dict)
+
+def ajax_json(request):
+	person_info_dict = [
+    	{"name":"xiaoming", "age":20},
+    	{"name":"tuweizhong", "age":24},
+    	{"name":"xiaoli", "age":33},
+	]
+	return JsonResponse(person_info_dict,safe = False)
+
+
 
 # render the static html to view
 def my_view(request):

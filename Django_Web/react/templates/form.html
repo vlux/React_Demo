@@ -4,10 +4,54 @@
 <p>请输入两个数字</p>
 
 <form action="/add/" method="get">
-    a: <input type="text" name="a"> <br>
-    b: <input type="text" name="b"> <br>
-    <input type="submit" value="提交">
+    a: <input type="text" id ='a' name="a"> <br>
+    b: <input type="text" id ='b' name="b"> <br>
+    <button type="button" id='sum'>提交</button>
+    <p> result: <span id ='answer'></span></p>
 </form>
+
+<div id="dict">Ajax 加载字典</div>
+<p id="dict_result"></p>
+
+<div id="list">Ajax 加载列表</div>
+<p id="list_result"></p>
+
+<div id="json">Ajax 加载JSON</div>
+<p id="json_result"></p>
+
+<script src = '/static/js/jquery.js'></script>
+<script>
+    $(document).ready(function(){
+        $("#sum").click(function(){
+            var a = $("#a").val()
+            var b = $("#b").val()
+            $.get("{% url 'add' %}",{'a':a,'b':b},function(d){
+                $("#answer").html(d)
+            })
+        });
+
+        $("#dict").click(function(){
+            $.getJSON("{% url 'ajax_dict' %}",function(d){
+                $("#dict_result").append(d.twz +'<br>');
+            })
+        });
+
+        $("#list").click(function(){
+            $.getJSON("{% url 'ajax_list' %}",function(d){
+                for(var i = d.length - 1; i >= 0; i--)
+                    $("#list_result").append(' '+d[i]);
+            })
+        });
+
+        $("#json").click(function(){
+            $.getJSON("{% url 'ajax_json' %}",function(d){
+                $.each(d,function(i,item){
+                    $("#json_result").append(d[i].name+' '+d[i].age+'<br>')
+                })
+            })
+        })
+    });
+</script>
 
 </body>
 </html>
