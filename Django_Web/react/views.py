@@ -25,3 +25,6 @@ def add2(request,a,b):
 
 def form(request):
 	return render(request,'form.html')
+
+def js(request):
+	return render(request,'js.html')
