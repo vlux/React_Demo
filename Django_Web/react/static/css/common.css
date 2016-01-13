@@ -1,0 +1,26 @@
+.rotateRight {
+  transform: rotate(180deg);
+  -ms-transform: rotate(180deg); /* IE 9 */
+  -webkit-transform: rotate(180deg); /* Safari and Chrome */
+  -o-transform: rotate(180deg); /* Opera */
+  -moz-transform: rotate(180deg); /* Firefox */
+
+  /* if you want to do this move with animate use transition */
+  transition: .5s;
+  -moz-transition: .5s; /* Firefox 4 */
+  -webkit-transition: .5s; /* Safari and Chrome */
+  -o-transition: .5s; /* Opera */
+}
+.rotateLeft {
+  transform: rotate(0deg);
+  -ms-transform: rotate(0deg); /* IE 9 */
+  -webkit-transform: rotate(0deg); /* Safari and Chrome */
+  -o-transform: rotate(0deg); /* Opera */
+  -moz-transform: rotate(0deg); /* Firefox */
+
+  /* if you want to do this move with animate use transition */
+  transition: .5s;
+  -moz-transition: .5s; /* Firefox 4 */
+  -webkit-transition: .5s; /* Safari and Chrome */
+  -o-transition: .5s; /* Opera */
+}
