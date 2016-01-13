@@ -19,7 +19,8 @@ def home(request):
 	return render(request,'home.html',{'string':string,'lis1':lis2,'dic':dic,'lis_num':lis_num})
 
 def index(request):
-    return HttpResponse("Hello Django")
+	return render(request,'index.html')
+	#return HttpResponse("Hello Django")
 
 def add(request):
 	a = request.GET['a']
