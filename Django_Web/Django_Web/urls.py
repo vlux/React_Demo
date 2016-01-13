@@ -32,4 +32,6 @@ urlpatterns = [
     url(r'^ajax_dict/$',react_views.ajax_dict,name ='ajax_dict'),
     url(r'^ajax_json/$',react_views.ajax_json,name ='ajax_json'),
 
+    url(r'^context/$',react_views.context,name='context'),
+
 ]

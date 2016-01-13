@@ -53,6 +53,14 @@ def ajax_json(request):
 	return JsonResponse(person_info_dict,safe = False)
 
 
+def context(request):
+	return render(request,'context.html')
+
+
+
+
+
+
 
 # render the static html to view
 def my_view(request):

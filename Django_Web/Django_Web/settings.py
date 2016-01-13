@@ -64,6 +64,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'Django_Web.context.settings',
+                'Django_Web.context.ip_address',
             ],
         },
     },

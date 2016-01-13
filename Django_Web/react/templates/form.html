@@ -21,6 +21,10 @@
 
 <script src = '/static/js/jquery.js'></script>
 <script>
+    $.ajaxSetup({
+        data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+    });
+    
     $(document).ready(function(){
         $("#sum").click(function(){
             var a = $("#a").val()
