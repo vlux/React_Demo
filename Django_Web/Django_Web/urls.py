@@ -19,19 +19,20 @@ from django.contrib import admin
 from react import views as react_views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^$',react_views.index,name='index'),
 
+    url(r'^$',react_views.index,name='index'),
+    url(r'^api/$',react_views.api,name='api'),
+
+
+
+    url(r'^admin/', admin.site.urls),
     url(r'^add/$',react_views.add,name='add'),
     url(r'^add2/(\d+)/(\d+)/$', react_views.add2, name='add2'),
-
     url(r'^form/$',react_views.form,name='form'),
     url(r'^js/$',react_views.js,name='js'),
-
     url(r'^ajax_list/$',react_views.ajax_list,name ='ajax_list'),
     url(r'^ajax_dict/$',react_views.ajax_dict,name ='ajax_dict'),
     url(r'^ajax_json/$',react_views.ajax_json,name ='ajax_json'),
-
     url(r'^context/$',react_views.context,name='context'),
 
 ]

@@ -17,3 +17,9 @@ function hideActionsPanel() {
 		isActionsOpen = false;
 	}
 }
+
+
+(function() {
+
+
+})()

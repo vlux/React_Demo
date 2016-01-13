@@ -5,21 +5,26 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.template.loader import render_to_string
 
-
 import os
 
+def index(request):
+	return render(request,'index.html')
 
-# Create your views here.
+def api(request):
+	address = request.POST['data'].split('\r\n')
+	
+	return render(request,'index.html')
 
+
+
+
+# Basic
 def home(request):
 	string = 'Hello Yue'
 	lis2 = ['Hey','I\'m','List']
 	dic = {'a':'Yue','b':'Xuanwu'}
 	lis_num = map(str,range(100))
 	return render(request,'home.html',{'string':string,'lis1':lis2,'dic':dic,'lis_num':lis_num})
-
-def index(request):
-	return render(request,'index.html')
 	#return HttpResponse("Hello Django")
 
 def add(request):
@@ -36,7 +41,7 @@ def form(request):
 def js(request):
 	return render(request,'js.html')
 
-
+# ajax
 def ajax_list(request):
     a = range(100)
     return JsonResponse(a, safe=False)
@@ -53,16 +58,9 @@ def ajax_json(request):
 	]
 	return JsonResponse(person_info_dict,safe = False)
 
-
-
+# context
 def context(request):
 	return render(request,'context.html')
-
-
-
-
-
-
 
 # render the static html to view
 def my_view(request):
