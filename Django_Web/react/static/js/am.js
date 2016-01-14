@@ -1,4 +1,4 @@
-var chartData = generatechartData();
+var chartData = [];
 
 function generatechartData() {
 	var chartData = [];
@@ -6,9 +6,6 @@ function generatechartData() {
 	firstDate.setDate(firstDate.getDate() - 150);
 
 	for (var i = 0; i < 150; i++) {
-		// we create date objects here. In your data, you can have date strings
-		// and then set format of your dates using chart.dataDateFormat property,
-		// however when possible, use date objects, as this will speed up chart rendering.
 		var newDate = new Date(firstDate);
 		newDate.setDate(newDate.getDate() + i);
 

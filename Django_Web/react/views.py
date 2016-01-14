@@ -12,8 +12,8 @@ def index(request):
 
 def api(request):
 	address = request.POST['data'].split('\r\n')
-	
-	return render(request,'index.html')
+	print address
+	return JsonResponse({'foo':'bar'})
 
 
 

@@ -18,8 +18,17 @@ function hideActionsPanel() {
 	}
 }
 
-
 (function() {
 
+	$.ajaxSetup({
+		data: {
+			csrfmiddlewaretoken: '{{ csrf_token }}'
+		},
+	});
 
+
+	$("#confirm").click(function() {
+		console.log('ok')
+		$("#loading").text()
+	});
 })()
