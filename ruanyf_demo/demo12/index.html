@@ -32,7 +32,7 @@ var RepoList = React.createClass({
     }
     else {
       var repos = this.state.data.items;
-      console.log (repos);
+      console.log (this.state.data);
       var repoList = repos.map(function (repo) {
         return (
           <li><a href={repo.html_url}>{repo.name}</a> ({repo.stargazers_count} stars) <br/> {repo.description}</li>
